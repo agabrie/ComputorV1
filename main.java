@@ -245,7 +245,7 @@ class MainClass{
 	}
 	static ArrayList<String> fix(ArrayList<String> lst){
 		boolean first = false;
-		String op = ""; 
+		// String op = ""; 
 		ArrayList<String> remove = new ArrayList<>();
 		for(String elem:lst){
 			if(!first && isOperator(elem)){
@@ -262,31 +262,61 @@ class MainClass{
 		return lst;
 	}
 
+	static int evaluateDiscriminant(double discriminant){
+		if(discriminant > 0){
+			System.out.println("Discriminant is strictly positive, the two solutions are:");
+			return(1);
+		}else if(discriminant == 0){
+			System.out.println("The solution is:");
+			return (0);
+		}
+		else{
+			System.out.println("Discriminant is strictly negative, there no real solutions.");
+			return (-1);
+		}
+	}
+
 	public static void main(String[] args){
 		try{
-			ArrayList<String> lhs= new ArrayList<String>();
-			ArrayList<String> rhs= new ArrayList<String>();
+			// ArrayList<String> lhs= new ArrayList<String>();
+			// ArrayList<String> rhs= new ArrayList<String>();
+			Polynomial lhs;
+			Polynomial rhs;
 			String input;
 			Scanner scLine = new Scanner(System.in);
 			input = scLine.nextLine();
 			scLine.close();
 			try{
 				Scanner scInput = new Scanner(input).useDelimiter("=");
-				lhs = tokenize(scInput.next());
-				rhs = tokenize(scInput.next());
-				reduce(lhs, rhs);
-				while(lhs.size() > 2){
-					lhs = evaluate(lhs);
-					lhs = fix(lhs);
-					statementDebug(lhs, rhs);
+				// lhs = tokenize(scInput.next());
+				// rhs = tokenize(scInput.next());
+				lhs = new Polynomial(scInput.next());
+				rhs = new Polynomial(scInput.next());
+				lhs.reduce(rhs);
+				System.out.printf("reduced form: %s= 0\n",lhs);
+				System.out.println("polynomial degree : " + lhs.getDegree());
+				// evaluateDiscriminant(lhs.getDiscriminant());
+				double x1 = 0.0;
+				double x2 = 0.0;
+				switch(evaluateDiscriminant(lhs.getDiscriminant())){
+					case 1:
+						x1 = lhs.evaluate(true);
+						x2 = lhs.evaluate(false);
+						break;
+					case 0:
+						x1 = lhs.evaluate();
+						break;
+					default:break;
 				}
-				statementDebug(lhs, rhs);
+				
 				scInput.close();
 			}catch(Exception e2){
 				System.out.println("Exception : " +e2);
 			}
+			scLine.close();
 		}catch(Exception e){
 			System.out.println("Exception : " +e);
 		}
 	}
 }
+
