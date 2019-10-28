@@ -82,11 +82,11 @@ class Polynomial{
 		double a = isPositive(oper[2])*coeff[2];
 		double b = isPositive(oper[1])*coeff[1];
 		double c = isPositive(oper[0])*coeff[0];
-		double x;
-		if (sign)
-			x = (b + MainClass.sqrt(this.discriminant))/(2 * a);
-		else
-			x = (b - MainClass.sqrt(this.discriminant))/(2 * a);			
+		double x = 0.0;
+		// if (sign)
+			// x = (b + MainClass.sqrt(this.discriminant))/(2 * a);
+		// else
+			// x = (b - MainClass.sqrt(this.discriminant))/(2 * a);			
 		return x;
 	}
 
@@ -125,10 +125,11 @@ class Polynomial{
 	public String toString(){
 		String s = "";
 		for(int i = 0 ; i < lst.size(); i++){
-			if(coeff[i] != 0.0)
-			if (i != 0)
+			if(coeff[i] != 0.0){
+			if (isPositive(oper[i]) == -1 || i != 0)
 				s += oper[i]+" ";
 			s += String.format("%.1f * X^%d ", coeff[i],i);
+			}
 			// s += String.format("%.1f * X^2 ",oper[i], coeff[i]);
 			// s += String.format("%.1f * X^2 ", coeff[2]);
 		}

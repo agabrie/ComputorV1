@@ -298,6 +298,8 @@ class MainClass{
 				// evaluateDiscriminant(lhs.getDiscriminant());
 				double x1 = 0.0;
 				double x2 = 0.0;
+				// System.out.printf("(%.2f)^2 - 4 * (%.2f) * (%.2f) = %.2f\n",lhs.coeff[1],lhs.coeff[2],lhs.coeff[0],lhs.getDiscriminant());
+
 				switch(evaluateDiscriminant(lhs.getDiscriminant())){
 					case 1:
 						x1 = lhs.evaluate(true);
@@ -308,7 +310,7 @@ class MainClass{
 						break;
 					default:break;
 				}
-				
+
 				scInput.close();
 			}catch(Exception e2){
 				System.out.println("Exception : " +e2);

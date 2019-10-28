@@ -24,12 +24,9 @@
 >>>- No
 ---
 >## Management of the entry
->Try several well-formatted but potentially
->poorly managed (null coefficients, negative, not whole ...).
->The program handles them well? (no crash, no mistakes
->calculation, no infinite loop ...).
->IMPORTANT: If you answered no to any of these three
->question, the defense stops there.
+>Try several well-formatted but potentially poorly managed (null coefficients, negative, not whole ...).
+>The program handles them well? (no crash, no mistakes calculation, no infinite loop ...).
+>IMPORTANT: If you answered no to any of these three questions, the defense stops there.
 >>## Equations of degree 0
 >>Enter a possible equation (for example, "5 * X^0 = 5 * X^0").
 >Does the program tell you that all real numbers are solution?

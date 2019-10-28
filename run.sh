@@ -1,2 +1,2 @@
-javac main.java
-java MainClass
+#!/bin/sh
+javac main.java && java MainClass
