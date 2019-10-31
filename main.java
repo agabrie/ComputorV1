@@ -66,7 +66,6 @@ class MainClass{
 		boolean next = false;
 		ArrayList<String> remove = new ArrayList<>();
 		for(String elem:lst){
-			// System.out.println(elem +" : " + remove.size());
 			if(isOperator(elem)){
 				op = elem;
 				remove.add(elem);
@@ -99,6 +98,7 @@ class MainClass{
 		}
 		return lst;
 	}
+
 	static void reduce(ArrayList<String> lhs,ArrayList<String> rhs){
 		boolean next = true;
 		int i = 0;
@@ -106,7 +106,6 @@ class MainClass{
 		for(String elem:rhs){
 			i++;
 			if(!next && isOperator(elem)){
-				// lhs.add("-");
 				lhs.add(inverseOperator(elem));
 				next = true;
 				remove.add(elem);
@@ -121,7 +120,6 @@ class MainClass{
 				continue;
 			}
 			else{
-				// System.out.println("none");
 			}
 		}
 		for(String rem:remove){
@@ -143,8 +141,6 @@ class MainClass{
 	{
 		return (val1 * val2);
 	}
-	// 5 / 6
-	// 0 * 6
 
 	static double div(double dividend, double divisor, int accuracy)
 	{
@@ -155,11 +151,6 @@ class MainClass{
 			sign = -1;
 		dividend = abs(dividend);
 		divisor = abs(divisor);
-
-		// if (divisor == 0)
-		// {
-		// 	throw("div by 0");
-		// }
 
 		while (dividend > divisor)
 		{
@@ -186,45 +177,9 @@ class MainClass{
 				val *= base;
 			}
 		}
-
-		// else
-		// {
-		// 	for (int i = exponent; i < 0; i++)
-		// 	{
-		// 		val *= div(1, base);
-		// 	}
-		// }
 		return (val);
 	}
 
-	// static double sqrt(double val, double seed, int accuracy)
-	// {
-	// 	double high = seed;
-	// 	double low = 0;
-	// 	double average;
-
-	// 	while (high * high < val)
-	// 	{
-	// 		low = high;
-	// 		high = high * 2;
-	// 	}
-
-	// 	for (int i = 0; i < accuracy; i++)
-	// 	{
-	// 		average = div(low + high, 2.0);
-	// 		if ((average * average) > val)
-	// 		{
-	// 			high = average;
-	// 		} else if (average * average < val)
-	// 		{
-	// 			low = average;
-	// 		}
-	// 		else
-	// 			return (average);
-	// 	}
-
-	// 	return (average);
-	// }
 	static double sqrt(double a){
 		double value = 0.0;
 		while(value*value < a){
@@ -252,7 +207,6 @@ class MainClass{
 	}
 	static ArrayList<String> fix(ArrayList<String> lst){
 		boolean first = false;
-		// String op = ""; 
 		ArrayList<String> remove = new ArrayList<>();
 		for(String elem:lst){
 			if(!first && isOperator(elem)){
@@ -285,8 +239,6 @@ class MainClass{
 
 	public static void main(String[] args){
 		try{
-			// ArrayList<String> lhs= new ArrayList<String>();
-			// ArrayList<String> rhs= new ArrayList<String>();
 			Polynomial lhs;
 			Polynomial rhs;
 			String input;
@@ -295,20 +247,13 @@ class MainClass{
 			scLine.close();
 			try{
 				Scanner scInput = new Scanner(input).useDelimiter("=");
-				// lhs = tokenize(scInput.next());
-				// rhs = tokenize(scInput.next());
 				lhs = new Polynomial(scInput.next());
 				rhs = new Polynomial(scInput.next());
 				lhs.reduce(rhs);
-				for(int i  = 0 ; i < 3;i++){
-					System.out.printf("%s %.2f\n",lhs.oper[i],lhs.coeff[i]);
-				}
 				System.out.printf("reduced form: %s= 0\n",lhs);
 				System.out.println("polynomial degree : " + lhs.getDegree());
-				// evaluateDiscriminant(lhs.getDiscriminant());
 				double x1 = 0.0;
 				double x2 = 0.0;
-				// System.out.printf("(%.2f)^2 - 4 * (%.2f) * (%.2f) = %.2f\n",lhs.coeff[1],lhs.coeff[2],lhs.coeff[0],lhs.getDiscriminant());
 				double a = lhs.getA();
 				double b = lhs.getB();
 				double c = lhs.getC();
@@ -327,10 +272,6 @@ class MainClass{
 						System.out.println("the solution is :");
 						System.out.printf("%.2f\n",x1); 
 					}
-					// else{
-					// 	System.out.println("there are no solutions");
-					// 	System.exit(1);
-					// }
 				}
 				else{
 					switch(evaluateDiscriminant(lhs.getDiscriminant())){
