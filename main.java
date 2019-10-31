@@ -242,9 +242,15 @@ class MainClass{
 			Polynomial lhs;
 			Polynomial rhs;
 			String input;
-			Scanner scLine = new Scanner(System.in);
-			input = scLine.nextLine();
-			scLine.close();
+			// System.out.println(args.length);
+			if(args.length == 1){
+				input = args[0];
+			}
+			else{
+				Scanner scLine = new Scanner(System.in);
+				input = scLine.nextLine();
+				scLine.close();
+			}
 			try{
 				Scanner scInput = new Scanner(input).useDelimiter("=");
 				lhs = new Polynomial(scInput.next());
@@ -292,7 +298,7 @@ class MainClass{
 			}catch(Exception e2){
 				System.out.println("Exception : " +e2);
 			}
-			scLine.close();
+			// scLine.close();
 		}catch(Exception e){
 			System.out.println("Exception : " +e);
 		}
