@@ -227,7 +227,7 @@ class MainClass{
 	// }
 	static double sqrt(double a){
 		double value = 0.0;
-		while(value/2 < a){
+		while(value*value < a){
 			value +=.01;
 		}
 		return (value);
