@@ -299,7 +299,17 @@ class MainClass{
 				double x1 = 0.0;
 				double x2 = 0.0;
 				// System.out.printf("(%.2f)^2 - 4 * (%.2f) * (%.2f) = %.2f\n",lhs.coeff[1],lhs.coeff[2],lhs.coeff[0],lhs.getDiscriminant());
+				if(lhs.coeff[2] == 0){
+					if(lhs.coeff[1] == 0)
+					{
 
+					}
+					else{
+						System.out.println("there are no solutions");
+						System.exit(1);
+					}
+				}
+				
 				switch(evaluateDiscriminant(lhs.getDiscriminant())){
 					case 1:
 						x1 = lhs.evaluate(true);
