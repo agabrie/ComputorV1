@@ -211,7 +211,7 @@ class MainClass{
 
 	// 	for (int i = 0; i < accuracy; i++)
 	// 	{
-	// 		average = div(low + high, 2);
+	// 		average = div(low + high, 2.0);
 	// 		if ((average * average) > val)
 	// 		{
 	// 			high = average;
@@ -225,6 +225,13 @@ class MainClass{
 
 	// 	return (average);
 	// }
+	static double sqrt(double a){
+		double value = 0.0;
+		while(value/2 < a){
+			value +=.01;
+		}
+		return (value);
+	}
 
 	static double abs(double val)
 	{
@@ -293,34 +300,53 @@ class MainClass{
 				lhs = new Polynomial(scInput.next());
 				rhs = new Polynomial(scInput.next());
 				lhs.reduce(rhs);
+				for(int i  = 0 ; i < 3;i++){
+					System.out.printf("%s %.2f\n",lhs.oper[i],lhs.coeff[i]);
+				}
 				System.out.printf("reduced form: %s= 0\n",lhs);
 				System.out.println("polynomial degree : " + lhs.getDegree());
 				// evaluateDiscriminant(lhs.getDiscriminant());
 				double x1 = 0.0;
 				double x2 = 0.0;
 				// System.out.printf("(%.2f)^2 - 4 * (%.2f) * (%.2f) = %.2f\n",lhs.coeff[1],lhs.coeff[2],lhs.coeff[0],lhs.getDiscriminant());
-				if(lhs.coeff[2] == 0){
-					if(lhs.coeff[1] == 0)
+				double a = lhs.getA();
+				double b = lhs.getB();
+				double c = lhs.getC();
+				if(a == 0){
+					if(b == 0)
 					{
-
+						if(c == 0)
+						{
+							System.out.println("identity - all real numbers are solutions");
+						}
+						else{
+							System.out.println("contradictory - no real solutions");
+						}
+					}else{
+						x1 = (-(c)/b);
+						System.out.println("the solution is :");
+						System.out.printf("%.2f\n",x1); 
 					}
-					else{
-						System.out.println("there are no solutions");
-						System.exit(1);
+					// else{
+					// 	System.out.println("there are no solutions");
+					// 	System.exit(1);
+					// }
+				}
+				else{
+					switch(evaluateDiscriminant(lhs.getDiscriminant())){
+						case 1:
+							x1 = lhs.evaluate(true);
+							x2 = lhs.evaluate(false);
+							System.out.printf("%.2f\n",x1);
+							System.out.printf("%.2f\n",x2);
+							break;
+							case 0:
+							x1 = lhs.evaluate();
+							System.out.printf("%.2f\n",x1);
+							break;
+						default:break;
 					}
 				}
-				
-				switch(evaluateDiscriminant(lhs.getDiscriminant())){
-					case 1:
-						x1 = lhs.evaluate(true);
-						x2 = lhs.evaluate(false);
-						break;
-					case 0:
-						x1 = lhs.evaluate();
-						break;
-					default:break;
-				}
-
 				scInput.close();
 			}catch(Exception e2){
 				System.out.println("Exception : " +e2);

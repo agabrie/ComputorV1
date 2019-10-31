@@ -45,7 +45,7 @@
 >>## Equations of degree 2
 >>>### Strictly positive discriminator
 >>>Enter a degree two equation with a discriminant strictly positive
->>>(for example: "5 * X^0 + 13 * X^1 + 3 * X^2 = 1 * X^0 + 1 * X^1").
+>>>(for example: "5 * X^0 + 13 * X^1 + 3 * X^2 = 1 * X^0 + 1 * X^1").
 >>>The program shows you well that it has a discriminant strictly positive?
 >>>The program shows you two Solutions?
 >>>These are the good ones?

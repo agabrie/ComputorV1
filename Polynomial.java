@@ -28,9 +28,9 @@ class Polynomial{
 	public Polynomial(){
 	}
 	public void calcDiscriminant(){
-		double a = isPositive(oper[2])*coeff[2];
-		double b = isPositive(oper[1])*coeff[1];
-		double c = isPositive(oper[0])*coeff[0];
+		double a = getA();
+		double b = getB();
+		double c = getC();
 		this.discriminant = (MainClass.pow(b,2) - 4*(a)*(c));
 		// System.out.printf("power function : a , b , c ::: %.2f, %.2f, %.2f \n then descriminant is ==>>> %.2f\n", a, b, c, this.discriminant);
 	}
@@ -79,25 +79,26 @@ class Polynomial{
 		return (op.equals("+") ? 1 : -1);
 	}
 	public double evaluate(boolean sign){
-		double a = isPositive(oper[2])*coeff[2];
-		double b = isPositive(oper[1])*coeff[1];
-		double c = isPositive(oper[0])*coeff[0];
+		double a = getA();
+		double b = getB();
+		double c = getC();
 		double x = 0.0;
-		// if (sign)
-			// x = (b + MainClass.sqrt(this.discriminant))/(2 * a);
-		// else
-			// x = (b - MainClass.sqrt(this.discriminant))/(2 * a);			
+		if (sign)
+			x = (-b + MainClass.sqrt(this.discriminant))/(2 * a);
+		else
+			x = (-b - MainClass.sqrt(this.discriminant))/(2 * a);			
 		return x;
 	}
 
 	public double evaluate(){
-		double a = isPositive(oper[2])*coeff[2];
-		double b = isPositive(oper[1])*coeff[1];
-		double c = isPositive(oper[0])*coeff[0];
+		double a = getA();
+		double b = getB();
+		// double c = getC();
 		double x = 0;
-		// x = (((-2 * b)) / (2 * a * c));
+		x = ((-b) / (2 * a));
 		return x;
 	}
+	
 	ArrayList<String> tokenize(String str){
 		
 		// str = str.replaceAll(Pattern.quote("+ "), "+");
@@ -122,13 +123,24 @@ class Polynomial{
 		lst.removeAll(Collections.singletonList(""));
 		return lst;
 	}
+	public double getA(){
+		return(isPositive(oper[2]) * coeff[2]);
+	}
+	public double getB(){
+		return(isPositive(oper[1]) * coeff[1]);
+	}
+	public double getC(){
+		return(isPositive(oper[0]) * coeff[0]);
+	}
+
 	public String toString(){
 		String s = "";
-		for(int i = 0 ; i < lst.size(); i++){
+		// System.out.println(+"");
+		for(int i = 0 ; i < 3; i++){
 			if(coeff[i] != 0.0){
-			if (isPositive(oper[i]) == -1 || i != 0)
+			// if ( i != 0)
 				s += oper[i]+" ";
-			s += String.format("%.1f * X^%d ", coeff[i],i);
+				s += String.format("%.1f * X^%d ", coeff[i],i);
 			}
 			// s += String.format("%.1f * X^2 ",oper[i], coeff[i]);
 			// s += String.format("%.1f * X^2 ", coeff[2]);
